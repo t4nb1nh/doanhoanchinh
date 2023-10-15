@@ -13,7 +13,9 @@ public interface MauSacService {
 
     MauSac findByID(Integer id);
 
-    MauSac update(MauSac mauSac, Integer id);
+    MauSac update(MauSac mauSac);
 
     void delete(Integer id);
+
+    List<MauSac> findMauSacByMa(String ma);
 }

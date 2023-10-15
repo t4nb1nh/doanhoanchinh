@@ -17,10 +17,9 @@
 
 </head>
 <body class="container col-6">
-<h3>
-    MauSac</h3>
+<h3>Hình Thức Thanh Toán</h3>
 
-<form method="post" th:action="@{/mau-sac/search}">
+<form method="post" th:action="@{/httt/search}">
     <div class="row">
     <input class="form-control col-6" type="text" name="ma" placeholder="Nhập mã Màu Sắc cần tìm">
     <button type="submit" class="btn btn-success col-2">Search</button>
@@ -29,44 +28,40 @@
 </form>
 <table class="table table-active">
     <tr>
-        <th>Mã</th>
         <th>Tên</th>
-        <th>Ngày tạo</th>
         <th>Trạng thái</th>
         <th>Actions</th>
     </tr>
     <tbody th:each="p:${mausac}">
     <tr>
-        <td th:utext="${p.ma}"></td>
         <td th:utext="${p.ten}"></td>
-        <td th:utext="${p.ngayTao}"></td>
         <td th:utext="${p.trangThai} == true ? 'còn hàng':'hết hàng'"></td>
 
         <td>
-            <a th:href="@{/mau-sac/edit/{id}(id=${p.idMauSac})}" class="btn btn-primary">Edit</a>
-            <a th:href="@{/mau-sac/delete?id={id}(id=${p.idMauSac})}" onclick="return confirm('bạn có chắc muốn xóa không')" class="btn btn-danger">Delete</a>
+            <a th:href="@{/httt/edit/{id}(id=${p.idHTTT})}" class="btn btn-primary">Edit</a>
+            <a th:href="@{/httt/delete?id={id}(id=${p.idHTTT})}" onclick="return confirm('bạn có chắc muốn xóa không')" class="btn btn-danger">Delete</a>
         </td>
     </tr>
     </tbody>
 </table>
-<a href="/mau-sac/add" class="btn btn-success">Add </a>
+<a href="/httt/add" class="btn btn-success">Add </a>
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li th:if="${currentPage > 0}" class="page-item">
-            <a class="page-link" th:href="@{/mau-sac/list(page=0)}">Đầu</a>
+            <a class="page-link" th:href="@{/httt/list(page=0)}">Đầu</a>
         </li>
         <li th:if="${currentPage > 0}" class="page-item">
-            <a class="page-link" th:href="@{/mau-sac/list(page=${currentPage - 1})}"><<</a>
+            <a class="page-link" th:href="@{/httt/list(page=${currentPage - 1})}"><<</a>
         </li>
         <li th:each="pageItem : ${#numbers.sequence(0, totalPages-1)}" class="page-item">
             <span th:if="${currentPage == pageItem}" class="page-link" th:text="${pageItem + 1}"></span>
-            <a th:if="${currentPage != pageItem}" class="page-link" th:href="@{/mau-sac/list(page=${pageItem})}" th:text="${pageItem + 1}"></a>
+            <a th:if="${currentPage != pageItem}" class="page-link" th:href="@{/httt/list(page=${pageItem})}" th:text="${pageItem + 1}"></a>
         </li>
         <li th:if="${currentPage < totalPages-1}" class="page-item">
-            <a class="page-link" th:href="@{/mau-sac/list(page=${currentPage + 1})}">>></a>
+            <a class="page-link" th:href="@{/httt/list(page=${currentPage + 1})}">>></a>
         </li>
         <li th:if="${currentPage < totalPages-1}" class="page-item">
-            <a class="page-link" th:href="@{/mau-sac/list(page=${totalPages - 1})}">Cuối</a>
+            <a class="page-link" th:href="@{/httt/list(page=${totalPages - 1})}">Cuối</a>
         </li>
     </ul>
 </nav>

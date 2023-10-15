@@ -21,28 +21,19 @@
 
 
 <div class="container col-6">
-    <h3>MauSac</h3>
+    <h3>Hình Thức Thanh Toán</h3>
     <div th:text="${message}"></div>
     <div class="col-md-auto">
-        <form  action="/mau-sac/save" th:object="${ms}" method="post">
-            <div>
-                <label th:text="Mã" th:for="ma"></label>
-                <input type="text" th:field="*{ma}" class="form-control" placeholder="Mã"/>
-                <i th:errors="*{ma}"></i><br>
-            </div>
-            <div style="clear: both; display: block; height: 10px"></div>
+        <form  action="/httt/save" th:object="${ms}" method="post">
+
+
             <div>
                 <label th:text="Tên" th:for="ten"></label>
                 <input type="text" th:field="*{ten}" class="form-control" placeholder="Tên"/>
                 <i th:errors="*{ten}"></i><br>
             </div>
             <div style="clear: both; display: block; height: 10px"></div>
-            <div>
-                <label th:text="Date" th:for="ngayTao"></label>
-                <input type="date" th:field="*{ngayTao}" class="form-control" placeholder="Ngày tạo"/>
-                <i th:errors="*{ngayTao}"></i><br>
-            </div>
-            <div style="clear: both; display: block; height: 10px"></div>
+
             <div class="form-group">
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{trangThai}">

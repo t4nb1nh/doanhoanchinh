@@ -1,4 +1,10 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
@@ -21,39 +27,33 @@
 
 
 <div class="container col-6">
-    <h3>MauSac</h3>
-    <div th:text="${message}"></div>
+    <h3>Hình Thức Thanh Toán</h3>
+    <div  th:text="${message}"></div>
+    <br>
     <div class="col-md-auto">
-        <form  action="/mau-sac/save" th:object="${ms}" method="post">
-            <div>
-                <label th:text="Mã" th:for="ma"></label>
-                <input type="text" th:field="*{ma}" class="form-control" placeholder="Mã"/>
-                <i th:errors="*{ma}"></i><br>
+        <form  th:action="@{'/httt/update' }" method="post">
+            <div hidden>
+                <label th:text="ID" th:for="idHTTT"></label>
+                <input type="text" th:field="${ms.idHTTT}" class="form-control" placeholder="Mã"/>
+                <i th:errors="*{ms.idHTTT}"></i><br>
             </div>
-            <div style="clear: both; display: block; height: 10px"></div>
             <div>
                 <label th:text="Tên" th:for="ten"></label>
-                <input type="text" th:field="*{ten}" class="form-control" placeholder="Tên"/>
-                <i th:errors="*{ten}"></i><br>
+                <input type="text" th:field="*{ms.ten}" class="form-control" placeholder="Tên"/>
+                <i th:errors="*{ms.ten}"></i><br>
             </div>
             <div style="clear: both; display: block; height: 10px"></div>
-            <div>
-                <label th:text="Date" th:for="ngayTao"></label>
-                <input type="date" th:field="*{ngayTao}" class="form-control" placeholder="Ngày tạo"/>
-                <i th:errors="*{ngayTao}"></i><br>
-            </div>
-            <div style="clear: both; display: block; height: 10px"></div>
+
             <div class="form-group">
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{trangThai}">
+                    <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{ms.trangThai}">
                     <label class="custom-control-label" for="option1">Hoạt động</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{trangThai}">
+                    <input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{ms.trangThai}">
                     <label class="custom-control-label" for="option2">Ngừng hoạt động</label>
                 </div>
-                <i th:errors="*{trangThai}"></i><br>
-
+                <i th:errors="*{ms.trangThai}"></i><br>
             </div>
             <div style="clear: both; display: block; height: 10px"></div>
             <input type="submit" class="btn btn-success" value="Save"/>

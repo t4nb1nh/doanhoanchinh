@@ -30,20 +30,32 @@ public class MauSacServiceImpl implements MauSacService {
     }
 
     @Override
-    public MauSac update( MauSac mauSac, Integer id) {
-        Optional<MauSac> optional = mauSacRepository.findById(id);
-        return optional.map(phieuGiaoHang -> {
-            phieuGiaoHang.setMa(mauSac.getMa());
-            phieuGiaoHang.setNgayTao(mauSac.getNgayTao());
-            phieuGiaoHang.setTen(mauSac.getTen());
-            phieuGiaoHang.setTrangThai(mauSac.getTrangThai());
+    public MauSac update( MauSac mauSac) {
+        Optional<MauSac> optional = mauSacRepository.findById(mauSac.getIdMauSac());
 
-            return mauSacRepository.save(phieuGiaoHang);
-        }).orElse(null);
+//        return optional.map(phieuGiaoHang -> {
+//            phieuGiaoHang.setMa(mauSac.getMa());
+//            phieuGiaoHang.setNgayTao(mauSac.getNgayTao());
+//            phieuGiaoHang.setTen(mauSac.getTen());
+//            phieuGiaoHang.setTrangThai(mauSac.getTrangThai());
+//
+//            return mauSacRepository.save(phieuGiaoHang);
+//        }).orElse(null);
+        MauSac mauSac1 = optional.get();
+        mauSac1.setMa(mauSac.getMa());
+        mauSac1.setNgayTao(mauSac.getNgayTao());
+           mauSac1.setTen(mauSac.getTen());
+            mauSac1.setTrangThai(mauSac.getTrangThai());
+            return mauSacRepository.save(mauSac1);
     }
 
     @Override
     public void delete(Integer id) {
     mauSacRepository.deleteById(id);
+    }
+
+    @Override
+    public List<MauSac> findMauSacByMa(String ma) {
+        return mauSacRepository.findByMa(ma);
     }
 }
