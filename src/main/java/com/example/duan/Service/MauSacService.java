@@ -1,6 +1,6 @@
-package com.example.duan.Service;
+package com.example.duan.service;
 
-import com.example.duan.Entity.MauSac;
+import com.example.duan.entity.MauSac;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

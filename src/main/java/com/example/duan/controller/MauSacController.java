@@ -1,7 +1,7 @@
-package com.example.duan.Controller;
+package com.example.duan.controller;
 
-import com.example.duan.Entity.MauSac;
-import com.example.duan.Service.MauSacService;
+import com.example.duan.entity.MauSac;
+import com.example.duan.service.MauSacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;

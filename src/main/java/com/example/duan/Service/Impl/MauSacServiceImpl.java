@@ -1,8 +1,8 @@
-package com.example.duan.Service.Impl;
+package com.example.duan.service.Impl;
 
-import com.example.duan.Entity.MauSac;
-import com.example.duan.Repository.MauSacRepository;
-import com.example.duan.Service.MauSacService;
+import com.example.duan.entity.MauSac;
+import com.example.duan.repository.MauSacRepository;
+import com.example.duan.service.MauSacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package com.example.duan.Controller;
+package com.example.duan.controller;
 
-import com.example.duan.Entity.HinhThucThanhToan;
-import com.example.duan.Service.HinhThucThanhToanService;
+import com.example.duan.entity.HinhThucThanhToan;
+import com.example.duan.service.HinhThucThanhToanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
