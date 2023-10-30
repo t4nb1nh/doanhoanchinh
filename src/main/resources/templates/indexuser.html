@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trang chủ | IVYmoda</title>
+        <link rel="icon" type="image/png" href="./assets/img/logo-icon.ico" sizes="16*16" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/css/base.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/css/header.css">
+        <link rel="stylesheet" href="./assets/css/info.css">
+        <link rel="stylesheet" href="./assets/css/modals.css">
+        <link rel="stylesheet" href="./assets/css/footer.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/css/reponsive.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="main">
+            <header class="header fl-jc-ct po-re">
+                <a href="/website__mvc" class="header__left-link">
+                    <div class="header__left fl-jc-ct">
+                        <img src="<?php echo Base_URL.'/public/assets/img/logo.png' ?>" alt="" class="header__between-logo">
+                    </div>
+                </a>   
+                
+            </header>
+            <div class="container">
+                <div class="grid">
+                    <div class="grid__row">
+                        <div class="info__router">
+                            <div class="info__router-item">
+                                <a href="/website__mvc" class="info__router-link">Trang chủ</a>
+                            </div>
+                            <div class="info__router-item">
+                                <i class="fa-solid fa-chevron-right info__router-icon"></i>
+                            </div>
+                            <div class="info__router-item">
+                                <a href="./index.html" class="info__router-link">Tài khoản của tôi</a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="info__container">
+                        <div class="grid__row">
+                            <div class="grid__column-4-12">
+                                <div class="info__sibar">
+                                    <div class="info__sibar-header">
+                                        <img class="info__sibar-avartar" src="<?php echo Base_URL.'/' .$data['cus']['imgCus'] ?>" alt="">
+                                        <div class="info__sibar-name"></div>
+                                    </div>
+                                    <ul class="info__sibar-list">
+                                        <li id="userInfo" class="info__sibar-item">
+                                            <div class="info__sibar-icon">
+                                                <i class="fa-light fa-user"></i>
+                                            </div>
+                                            <div class="info__sibar-label">
+                                                Thông tin tài khoản
+                                            </div>
+                                            </li>
+                                        <li id="order" class="info__sibar-item">
+                                            <div class="info__sibar-icon">
+                                                <i class="fa-light fa-cart-shopping"></i>
+                                            </div>
+                                            <div class="info__sibar-label">
+                                                Quản lý đơn hàng
+                                            </div>
+                                        </li>
+                                        <li class="info__sibar-item">
+                                            <div class="info__sibar-icon">
+                                                <i class="fa-light fa-folder-heart"></i>
+                                            </div>
+                                            <div class="info__sibar-label">
+                                                Sản phẩm yêu thích
+                                            </div>
+                                        </li>
+                                        <li id="location" class="info__sibar-item">
+                                            <div class="info__sibar-icon">
+                                                <i class="fa-regular fa-location-dot"></i>
+                                            </div>
+                                            <div class="info__sibar-label">
+                                                Sổ địa chỉ
+                                            </div>
+                                        </li>
+                                        <li id="location" class="info__sibar-item">
+                                            <div class="info__sibar-icon">
+                                                <i class="fa-solid fa-arrow-right-from-bracket" style="color: red;"></i>
+                                            </div>
+                                            <div class="info__sibar-label" >
+                                                <a href="/website__mvc/customers/logout" class="" style="color: red; text-decoration: none;">Đăng xuất</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="grid__column-8-12">
+                                <form action="/website__mvc/customers/updateInfo?id=<?php echo $data['cus']['idCus'] ?>" method="post" enctype='multipart/form-data'>
+                                <div class="info active">
+                                    <div class="info__top">
+                                        <div class="info__left">
+                                            <div class="info__group">
+                                                 <p class="info__group-label">Tên của bạn</p>
+                                                 <input class="info__group-input" name="name" value="<?php echo $data['cus']['nameCus'] ?>" type="text">
+                                            </div>
+                                            <div class="info__group">
+                                                 <p class="info__group-label">Số điện thoại</p>
+                                                 <input class="info__group-input" name="phone" value="<?php echo $data['cus']['phoneCus'] ?>" type="text">
+                                            </div>
+                                            <div class="info__group">
+                                             <p class="info__group-label">Email của bạn</p>
+                                             <input class="info__group-input" name="email" value="<?php echo $data['cus']['emailCus'] ?>" type="text">
+                                             </div>
+                                             <div class="info__group">
+                                                 <p class="info__group-label">Ngày sinh</p>
+                                                 <input class="info__group-input" name="birtday" value="<?php echo $data['cus']['birtday'] ?>" type="text">
+                                            </div>
+                                            <div class="info__group">
+                                             <p class="info__group-label">Giới tính</p>
+                                             <select class="info__group-input" name="sex" id="">
+                                                <option selected value="0">Nam</option>
+                                                <option selected value="1">Nữ</option>
+                                                <option selected value="1">LGBT</option>
+                                                <option selected value="1">Khác</option>
+                                                 
+                                                 <option value="0">Nam</option>
+                                                 <option value="1">Nữ</option>
+                                                 <option value="2">LGBT</option>
+                                                 <option value="3">Khác</option>
+                                             </select>
+                                             </div>
+                                            
+                                         </div>
+                                         <div class="info__right">
+                                             <img src="" alt="" class="info__img">
+                                             <input class="info__img-input" name="image" type="file" style="display: none;">
+                                             <div class="info__img-btn">Chọn Ảnh</div>
+                                         </div>
+                                    </div>
+                                    
+                                    <div class="info__actions">
+                                        <button type="submit" onclick="return confirm('Bạn Chắc Chắn chứ ?')" class="info__actions-btn">Lưu</button>
+                                    </div>
+                                </div>
+                                </form>
+                                
+                                <div class="order">
+                                    <div class="order__header">
+                                        <div class="order__header-left">
+                                            <h3 class="order__header-heading">Quản lý đơn hàng</h3>
+                                        </div>
+                                        
+                                        <div class="order__header-right">
+                                            <div class="order__header-group">
+                                                <div class="order__header-label">Lọc theo trạng thái</div>
+                                                <select name="" class="order__header-select" id="">
+                                                    <option value="0">Tất cả </option>
+                                                    <option value="1">Đã Xác nhận </option>
+                                                    <option value="2">Đang vận chuyển </option>
+                                                    <option value="3">Giao thành công </option>
+                                                    <option value="4"> Hoàn hàng </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order__container">
+                                        <div class="order__head">
+                                            <ul class="order__head-list">
+                                                <li class="w-15 order__head-item">Mã đơn hàng</li>
+                                                <li class="w-15 order__head-item">Trạng thái</li>
+                                                <li class="w-50 order__head-item">Sản phẩm</li>
+                                                <li class="w-20 order__head-item">Tổng tiền</li>
+                                            </ul>
+                                        </div>
+                                        <div class="order__body">
+                                            
+                                            <div class="order__body-list">
+                                                <div class="w-15 order__body-item"></div>
+                                                <div class="w-15 order__body-item">
+                                                    
+                                                </div>
+                                                
+                                                <div class="w-50 order__body-item">
+                                               
+                                                        <div class="order__product">
+                                                        <div class="order__product-left">
+                                                            <img src="'.Base_URL.''.'/'.''.$data['pro']['imgPro'].'" alt="" class="order__product-img">
+                                                        </div>
+                                                        <div class="order__product-mid">
+                                                            <div class="order__product-name">'.$value->order_namePro.'</div>
+                                                            <div class="order__product-options">
+                                                                <div class="order__product-size">
+                                                                    <div class="order__product-value">
+                                                                        <div class="order__product-label">'.$size.'</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="order__product-color">
+                                                                    <div class="order__product-value">'.$color.'</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="order__product-quantity">'.'X'.''.$value->order_quanPro.'</div>
+                                                        </div>
+                                                        <div class="order__product-right">
+                                                            <button class="order__product-btn">Mua lại</button>
+                                                        </div>
+                                                    </div>
+                                                      
+                                                    
+                                                
+                                                </div>
+                                                <div class="w-20 order__body-item order__body-price"></div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="/website__mvc/customers/updateLocation?id=<?php echo $data['cus']['idCus'] ?>" method="post">
+                                <div class="location">
+                                    <div class="location__container">
+                                        <div class="location__left">
+                                            <div class="location__group">
+                                                <label for="province" class="location__label">Tỉnh/Thành Phố</label>
+                                                <select id="province" name="province" class="location__input" id="">
+                                                   <option value="'.$val->province_id.'">'.$val->name.'</option>';
+                                                       
+                                                </select>
+                                            </div>
+                                            <div class="location__group">
+                                                <label for="district" class="location__label">Quận/Huyện</label>
+                                                <select id="district" name="district" class="location__input" id="">
+                                                    <option value="'.$val->district_id.'">'.$val->name.'</option>
+                                                </select>
+                                            </div>
+                                            <div class="location__group">
+                                                <label for="wards" class="location__label">Xã/Phường</label>
+                                                <select id="wards" name="wards" class="location__input" id="">
+                                                    <option value="'.$val->wards_id.'">'.$val->name.'</option>';
+                                                      
+                                                </select>
+                                            </div>
+                                            <div class="location__group">
+                                                <label for="local" spellcheck="false" class="location__label">Địa chỉ</label>
+                                                <textarea type="text" name="address" class="location__tera">
+                                                   
+                                                </textarea>
+                                            </div>
+                                            <input type="hidden" id="provinceVal" value="<?php echo $data['cus']['idProvince'] ?>">
+                                            <input type="hidden" id="districtVal" value="<?php echo $data['cus']['idDistrict'] ?>">
+                                            <input type="hidden" id="wardsVal" value="<?php echo $data['cus']['idWards'] ?>">
+                                        </div>
+                                        <div class="location__right">
+                                            <div class="location__group">
+                                                <label for="name" class="location__label">Tên người nhận</label>
+                                                <input type="text" name="name" value="<?php echo $data['cus']['nameCus'] ?>" class="location__input" readonly>
+                                            </div>
+                                            <div class="location__group">
+                                                <label for="phone" class="location__label">Số điện thoại</label>
+                                                <input type="text" name="phone" value="<?php echo $data['cus']['phoneCus'] ?>" class="location__input" readonly>
+                                            </div>
+                                            <div class="location__group">
+                                                <label for="note" spellcheck="false" class="location__label">Ghi chú</label>
+                                                <textarea type="text" name="note" value="Nguyễn Thế Hoài Nam" class="location__tera" style="height: 120px" readonly></textarea>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="location__actions">
+                                        <button type="submit" class="location__btn">Lưu</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+               
+            </div>
+
+        </div>
+        <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script> 
+        
+        </script>
+    </body>
+    
+</html>

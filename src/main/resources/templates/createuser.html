@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trang chủ | IVYmoda</title>
+        <link rel="icon" type="image/png" href="./assets/img/logo-icon.ico" sizes="16*16" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/css/base.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/css/header.css">
+        <link rel="stylesheet" href="./assets/css/auth.css">
+        <link rel="stylesheet" href="./assets/css/modals.css">
+        <link rel="stylesheet" href="./assets/css/footer.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/css/reponsive.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="main">
+            <header class="header fl-jc-ct po-re">
+                <a href="./index.html" class="header__left-link">
+                    <div class="header__left fl-jc-ct">
+                        <img src="" alt="" class="header__between-logo">
+                    </div>
+                </a>   
+                
+            </header>
+            <div class="container">
+                <div class="signUp">
+                    <div class="grid">
+                        <div class="signUp__header">
+                            <h2 class="signUp__heading">Đăng Ký</h2>
+                        </div>
+                        
+                        <div class="signUp__body">
+                            <form action="/website__mvc/customers/create" method="POST">
+                                <div class="grid__row">
+                                    <div class="grid__column-6">
+                                        <h5 class="input__heading">Thông tin cá nhân </h5>
+                                        <div class="grid__row">
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="name">Tên của bạn</label>
+                                                    <input type="text" name="name" value="" class="signUp__input" placeholder="Nhập tên của bạn">
+                                                </div>
+                                            </div>
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="phone">Số điện thoại</label>
+                                                    <input type="text" name="phone" value="" class="signUp__input" placeholder="Nhập số điện thoại">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__row">
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="email">Email</label>
+                                                    <input type="email" name="email" value="" class="signUp__input" placeholder="Nhập email của bạn">
+                                                </div>
+                                            </div>
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="birtday">Ngày sinh</label>
+                                                    <input type="text" name="birtday" value="" class="signUp__input" placeholder="Ví dụ: 30/02/2001">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__row">
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="password">Mật khẩu</label>
+                                                    <input type="password" name="password" value="" class="signUp__input input__pass" placeholder="Nhập mật khẩu">
+                                                    <i class="fa-solid fa-eye signUp__icon"></i>
+                                                </div>
+                                            </div>
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="repassword">Xác nhận mật khẩu</label>
+                                                    <input type="password" name="repassword" value="" class="signUp__input input__pass" id="input__pass" placeholder="Nhập lại mật khẩu">
+                                                    <i class="fa-solid fa-eye signUp__icon "></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__row">
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="sex">Giớ tính</label>
+                                                    <select name="sex" id="" class="signUp__select">
+                                                        <option selected class="signUp__option">Giới tính</option>
+                                                        <option class="signUp__option" value="0">Nam</option>
+                                                        <option class="signUp__option" value="1">Nữ</option>
+                                                        <option class="signUp__option" value="2">LGBT</option>
+                                                        <option class="signUp__option" value="3">Khác</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="sharecode">Mã giới thiệu</label>
+                                                    <input type="text" name="sharecode" class="signUp__input" placeholder="Nhập mã giới thiệu">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid__column-6">
+                                        <h5 class="input__heading">Địa chỉ nhận hàng</h5>
+                                        <div class="grid__row">
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="city">Tỉnh/Thành phố</label>
+                                                    <select name="province" id="province" class="signUp__select">
+                                                    <option selected class="signUp__option" value="0">Tỉnh/Thành phố</option>
+                                                       <option class="signUp__option" value="'.$val->province_id.'"></option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input__2">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="district">Quận/Huyện</label>
+                                                    <select name="district" id="district" class="signUp__select">
+                                                        <option selected class="signUp__option" value="0">Quận/Huyện</option>
+                                                        <!-- <option class="signUp__option" value="">Hà Nội</option> -->
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="grid__row">
+                                            <div class="input__full">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="wards">Phường/Xã</label>
+                                                    <select name="wards" id="wards" class="signUp__select">
+                                                        <option selected class="signUp__option" value="0">Phường/Xã</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__row">
+                                            <div class="input__full">
+                                                <div class="input__group">
+                                                    <label class="signUp__label" for="address">Địa chỉ</label>
+                                                    <textarea type="text" name="address" class="signUp__text" placeholder="Số nhà tên đường hay tên thôn xóm"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__row">
+                                            <div class="input__2">
+                                                <div class="input__group options">
+                                                    <input type="checkbox" name="roles" class="input__check">
+                                                    <label class="label__check" for="roles">Đồng ý với điều khoản của chúng tôi</label>
+                                                </div>
+                                            </div>
+                                            <div class="input__2">
+                                                <div class="input__group options">
+                                                    <input type="checkbox" name="emailRequest" class="input__check">
+                                                    <label class="label__check" for="emailRequest">Đăng ký nhận tin qua email</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input__sub">
+                                    <button type="submit" class="input__btn">Đăng ký</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script>
+       
+    </body>
+    
+</html>
