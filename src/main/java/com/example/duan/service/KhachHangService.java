@@ -47,4 +47,8 @@ public class KhachHangService {
     public void deleteKhachHang(int id) {
         khachHangRepository.deleteById(id);
     }
+
+    public KhachHang searchKhachHang(String sdt) {
+        return khachHangRepository.findKhachHangBySoDienThoai(sdt);
+    }
 }
