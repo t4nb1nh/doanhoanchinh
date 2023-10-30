@@ -1,10 +1,8 @@
-package com.example.duan.Service;
+package com.example.duan.service;
 
-import com.example.duan.Entity.MauSac;
-import org.springframework.stereotype.Service;
+import com.example.duan.entity.MauSac;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MauSacService {
     List<MauSac> findAll();

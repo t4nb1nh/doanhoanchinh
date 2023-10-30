@@ -1,7 +1,6 @@
-package com.example.duan.Service;
+package com.example.duan.service;
 
-import com.example.duan.Entity.HinhThucThanhToan;
-import com.example.duan.Entity.MauSac;
+import com.example.duan.entity.HinhThucThanhToan;
 
 import java.util.List;
 

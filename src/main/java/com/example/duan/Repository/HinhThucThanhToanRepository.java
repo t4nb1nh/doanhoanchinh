@@ -1,7 +1,6 @@
-package com.example.duan.Repository;
+package com.example.duan.repository;
 
-import com.example.duan.Entity.HinhThucThanhToan;
-import com.example.duan.Entity.MauSac;
+import com.example.duan.entity.HinhThucThanhToan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

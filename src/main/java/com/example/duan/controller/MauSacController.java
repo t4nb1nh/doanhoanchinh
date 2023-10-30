@@ -1,18 +1,15 @@
-package com.example.duan.Controller;
+package com.example.duan.controller;
 
-import com.example.duan.Entity.MauSac;
-import com.example.duan.Service.MauSacService;
+import com.example.duan.entity.MauSac;
+import com.example.duan.service.MauSacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("mau-sac")

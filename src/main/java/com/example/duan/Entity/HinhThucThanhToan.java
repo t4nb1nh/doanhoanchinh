@@ -1,4 +1,4 @@
-package com.example.duan.Entity;
+package com.example.duan.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
