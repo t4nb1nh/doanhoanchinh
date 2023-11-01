@@ -39,7 +39,5 @@ public class HoaDonChiTiet {
     @JoinColumn(name = "idhoadon")
     private HoaDon hoaDon;
 
-    @OneToOne
-    @JoinColumn(name = "idgiohang")
-    private GioHang gioHang;
+
 }
