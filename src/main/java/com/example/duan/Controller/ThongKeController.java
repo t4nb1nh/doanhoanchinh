@@ -1,9 +1,11 @@
 package com.example.duan.controller;
 
 import com.example.duan.entity.HoaDon;
+import com.example.duan.entity.HoaDonChiTiet;
 import com.example.duan.entity.StatusValue;
 import com.example.duan.service.HoaDonService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,7 @@ public class ThongKeController {
         model.addAttribute("sumDHDone", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(3)));
         model.addAttribute("sumDHCancel", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(4)));
         model.addAttribute("sumDHReturn", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(6)));
+
         return "ThongKe/ThongKehoadon";
     }
 

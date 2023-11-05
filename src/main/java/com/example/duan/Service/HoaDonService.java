@@ -28,7 +28,9 @@ public class HoaDonService {
     public Page<HoaDon> listByPage(int pageNumber, String sortField, String sortDir, String keyword) {
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, 10, Sort.by(SortOrder(sortField, sortDir)));
         if (keyword != null)
+
             return this.hoaDonRepository.findAllPagination(keyword, (Pageable)pageRequest);
+
         return this.hoaDonRepository.findAll((Pageable)pageRequest);
     }
     public  Page<HoaDon> listByPageStatus(int pageNumber, String sortField, String sortDir, String keyword, int status) {

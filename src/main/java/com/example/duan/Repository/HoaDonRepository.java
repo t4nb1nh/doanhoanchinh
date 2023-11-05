@@ -15,9 +15,9 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     Integer soDonHangTheoTrangThai(Integer trangThai);
     @Query("SELECT dn    FROM HoaDon dn")
     Page<HoaDon> findAll(Pageable paramPageable);
-    @Query("SELECT dh FROM HoaDon dh WHERE UPPER(CONCAT( dh.maHoaDon, ' ', dh.khachHang.ten, '')) LIKE %?1% ")
+    @Query("SELECT dh FROM HoaDon dh WHERE  dh.khachHang.ten LIKE %?1% ")
     Page<HoaDon> findAllPagination(String paramString, Pageable paramPageable);
 
-    @Query("SELECT dh FROM HoaDon dh WHERE UPPER(CONCAT( dh.maHoaDon, ' ', dh.khachHang.ten, '')) LIKE %?1% AND dh.trangThai = ?2")
+    @Query("SELECT dh FROM HoaDon dh WHERE  dh.khachHang.ten LIKE %?1% AND dh.trangThai = ?2")
     Page<HoaDon> findAllPaginationStatus(String paramString, Pageable paramPageable, Integer paramInteger);
 }

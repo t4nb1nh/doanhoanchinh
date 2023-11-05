@@ -76,7 +76,8 @@
             <input type="button" value="Clear" class="btn btn-secondary ml-2" onclick="clearFilter()"/>
         </div>
     </form>
-
+    <div style="display: flex;
+    justify-content: space-between;">
     <select style=" height: 42px; width: 219px; margin-top: 15px;border-radius: 5px"
             onchange="location ='/thong-ke/hoa-don/' + this.value + '/1?sortField=ngayTao&sortDir=desc&keyword=';">
         <option value="10">tất cả</option>
@@ -85,6 +86,7 @@
                 th:text="${statusValue.label}"
                 th:selected="${statusValue.value == selectedStatus}"></option>
     </select>
+    </div>
     <div class="full-details">
         <table class="table table-bordered table-striped table-hover table-responsive-xl">
             <tr>
@@ -109,28 +111,34 @@
                 <th>
                     ngày tạo
                 </th>
+                <th>chuc nang</th>
             </tr>
             <tr th:each="dh :${listDonHang}">
                 <td style="width: 100px">[[${dh.maHoaDon}]]</td>
-                                <td>[[${dh.nhanVien == null ? "" : dh.nhanVien.ten}]]</td>
-                                <td>[[${dh.khachHang.ten}]]</td>
-                                <td>[[${dh.trangThai == 0 ? "Chờ giao hàng": dh.trangThai == 1 ? "Đang chuẩn bị":
-                                    dh.trangThai == 2 ? "Đang giao hàng": dh.trangThai == 3 ? "Hoàn thành":
-                                    dh.trangThai == 4 ? "đã hủy": dh.trangThai == 5 ? "Yêu cầu hoàn trả":
-                                    "Đã hoàn trả"}]]
-                                </td>
-                                <td>[[${dh.tienShipHang}]]
-                                <td>[[${dh.hTTT == 0 ? "trả sau" : dh.hTTT == 1 ? "VN Pay" : ""}]]</td>
-                                <td>[[${dh.ngayTao}]]</td>
+                <td>[[${dh.nhanVien == null ? "" : dh.nhanVien.ten}]]</td>
+                <td>[[${dh.khachHang.ten}]]</td>
+                <td>[[${dh.trangThai == 0 ? "Chờ giao hàng": dh.trangThai == 1 ? "Đang chuẩn bị":
+                    dh.trangThai == 2 ? "Đang giao hàng": dh.trangThai == 3 ? "Hoàn thành":
+                    dh.trangThai == 4 ? "đã hủy": dh.trangThai == 5 ? "Yêu cầu hoàn trả":
+                    "Đã hoàn trả"}]]
+                </td>
+                <td>[[${dh.tienShipHang}]]
+                <td>[[${dh.hTTT == 0 ? "trả sau" : dh.hTTT == 1 ? "VN Pay" : ""}]]</td>
+                <td>[[${dh.ngayTao}]]</td>
                 <td>
-<!--                                        <a class="btn btn-outline-danger"-->
-<!--                                           th:href="@{/admin/hoa-don-chi-tiet/search/{id}(id=${dh.idDonHang})}">-->
-<!--                                            Xem-->
-<!--                                        </a>-->
+<!--                    <a class="btn btn-outline-danger"-->
+<!--                       th:href="@{/admin/hoa-don-chi-tiet/search/{id}(id=${dh.idDonHang})}">-->
+<!--                                                                Xem-->
+<!--                    </a>-->
                 </td>
             </tr>
         </table>
     </div>
 </div>
+<script type="text/javascript">
+    function clearFilter() {
+        window.location = "[[@{/thong-ke/hoa-don}]]";
+    }
+</script>
 </body>
 </html>
