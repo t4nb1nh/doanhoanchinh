@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trang chủ | IVYmoda</title>
+        <link rel="icon" type="image/png" href="./assets/img/logo-icon.ico" sizes="16*16" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/css/base.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/css/header.css">
+        <link rel="stylesheet" href="./assets/css/auth.css">
+        <link rel="stylesheet" href="./assets/css/modals.css">
+        <link rel="stylesheet" href="./assets/css/footer.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/css/reponsive.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="main">
+            <header class="header fl-jc-ct po-re">
+                <a href="./index.html" class="header__left-link">
+                    <div class="header__left fl-jc-ct">
+                        <img src="" alt="" class="header__between-logo">
+                    </div>
+                </a>   
+                
+            </header>
+            <div class="container">
+                <div class="bg" style="background-image: url('./assets/img/bg1.jpg')" >
+                    <div class="login">
+                        <div class="login__header">
+                            <div class="login__header-item">
+                                <i class="fa-regular fa-qrcode login__header-icon"></i>
+                            </div>
+                            <div class="login__header-item active">
+                                <i class="fa-solid fa-envelope login__header-icon"></i>
+                            </div>
+                        </div>
+                        <div class="login__container">
+                            <h3 class="login__heading">Đăng Nhập</h3>
+                           
+                            <form class="login__form" action="/website__mvc/customers/login" method="post">
+                                <div class="login__field">
+                                    <label for="user__input" class="login__label">
+                                        <i class="fa-solid fa-user"></i>
+                                    </label>
+                                    <input type="text" class="login__input" name="username" id="" placeholder="Email / SĐT">
+                                </div>
+                                <div class="login__field">
+                                    <label for="pass__input" class="login__label">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </label>
+                                    <input type="password" class="login__input" name="password" id="" placeholder="Mật Khẩu">
+                                    <!-- <i class="fa-regular fa-eye"></i> -->
+                                    <!-- <i class="fa-regular fa-eye-slash"></i> -->
+                                </div>
+                                <div class="login__helper">
+                                    <a href="" class="login__forgot">Quên mật khẩu ?</a>
+                                </div>
+                                <div class="btn__wrap">
+                                    <button type="submit" class="login__btn">Đăng Nhập</button> 
+                                </div>
+                                                           
+                            </form>
+                            <div class="signin__field">
+                                <a href="/website__mvc/customers/create" class="signin__btn">Đăng Ký Mới</a>
+                            </div>
+                            <div class="login__about">
+                                <a href="" class="login__forgot">Thành viên mới với vô vàn khuyến mãi và mã freeship</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script>
+        <script></script>
+    </body>
+    
+</html>
