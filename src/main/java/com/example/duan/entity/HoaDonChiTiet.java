@@ -20,21 +20,6 @@ public class HoaDonChiTiet {
     @Column(name = "idhoadonchitiet")
     private Integer idHoaDonChiTiet;
 
-    @Column(name = "soluong")
-    private Integer soLuong;
-
-    @Column(name = "gia")
-    private BigDecimal gia;
-
-    @Column(name = "giamgia")
-    private Double giamGia;
-
-    @Column(name = "tongtien")
-    private BigDecimal tongTien;
-
-    @Column(name = "trangthai")
-    private boolean trangThai;
-
     @Column(name = "ghichu")
     private String ghiChu;
 
@@ -43,6 +28,6 @@ public class HoaDonChiTiet {
     private HoaDon hoaDon;
 
     @OneToOne
-    @JoinColumn(name = "idgiohang")
-    private GioHang gioHang;
+    @JoinColumn(name = "idgiohangchitiet")
+    private GioHangChiTiet gioHangChiTiet;
 }

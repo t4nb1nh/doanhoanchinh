@@ -1,9 +1,6 @@
 package com.example.duan.service;
 
-import com.example.duan.entity.GioHang;
-import com.example.duan.entity.HoaDon;
-import com.example.duan.entity.HoaDonChiTiet;
-import com.example.duan.entity.KhachHang;
+import com.example.duan.entity.*;
 import com.example.duan.repository.GioHangRepository;
 import com.example.duan.repository.HoaDonChiTietRepository;
 import com.example.duan.repository.HoaDonRepository;
@@ -23,17 +20,17 @@ public class HoaDonService {
     private HoaDonRepository hoaDonRepository;
 
     @Autowired
-    private GioHangRepository gioHangRepository;
+    private HoaDonChiTietService hoaDonChiTietService;
 
     @Autowired
-    private KhachHangRepository khachHangRepository;
+    private GioHangChiTietService gioHangChiTietService;
 
-    @Autowired
-    private HoaDonChiTietRepository hoaDonChiTietRepository;
-
-    public List<HoaDon> getAll(){
+    public List<HoaDon> getAll() {
         return hoaDonRepository.findAll();
-    };
+    }
+
+    ;
+
     public List<HoaDon> getHoaDonByTrangThai(int trangThai) {
         return hoaDonRepository.findHoaDonByTrangThai(trangThai);
     }
@@ -52,69 +49,28 @@ public class HoaDonService {
     }
 
     @Transactional
-    public boolean xuLyThanhToan(int idKhachHang, List<GioHang> gioHangItems) {
-        // Kiểm tra xem có sản phẩm trong giỏ hàng hay không
-        if (gioHangItems.isEmpty()) {
-            return false; // Giỏ hàng trống, không thể thanh toán
-        }
-
-        // Tạo một hóa đơn từ giỏ hàng
-        HoaDon hoaDon = taoHoaDon(idKhachHang, gioHangItems);
-
-        // Lưu hóa đơn vào cơ sở dữ liệu
-        hoaDon = hoaDonRepository.save(hoaDon);
-
-        // Tạo hóa đơn chi tiết cho từng mục trong giỏ hàng
-        for (GioHang gioHangItem : gioHangItems) {
-            taoHoaDonChiTiet(hoaDon, gioHangItem);
-        }
-
-        return true; // Thanh toán thành công
-    }
-
-
-    private HoaDon taoHoaDon(int idKhachHang, List<GioHang> gioHangItems) {
-        // Tạo một hóa đơn mới
+    public HoaDon xuLyThanhToan(String maHD, NhanVien nv, List<GioHangChiTiet> gioHangChiTietList) {
         HoaDon hoaDon = new HoaDon();
-        KhachHang khachHang = new KhachHang();
-        khachHang.setIdKhachHang(idKhachHang); // Thiết lập ID khách hàng trực tiếp
-        hoaDon.setKhachHang(khachHang);
         hoaDon.setNgayTao(new Date());
-        hoaDon.setHTTT(true);
-        hoaDon.setPhuongThucMuaHang(true);
-        hoaDon.setTrangThai(3); // Trạng thái mặc định
-        hoaDon.setTongTien(tinhTongTien(gioHangItems)); // Tính tổng cộng từ giỏ hàng
+        hoaDon.setTrangThai(3);
+        hoaDon.setMaHoaDon(maHD);
+        hoaDon.setNhanVien(nv);
+        hoaDon = hoaDonRepository.save(hoaDon); // Lưu hóa đơn vào cơ sở dữ liệu
+        BigDecimal totalAmount = BigDecimal.ZERO;
+        for (GioHangChiTiet gioHangChiTiet : gioHangChiTietList) {
+            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
+            hoaDonChiTiet.setHoaDon(hoaDon);
+            hoaDonChiTiet.setGioHangChiTiet(gioHangChiTiet);
+            hoaDonChiTiet.setGhiChu("");
+            hoaDonChiTietService.createHoaDonChiTiet(hoaDonChiTiet);
+            totalAmount = totalAmount.add(gioHangChiTiet.getTongGia());
+            gioHangChiTietService.updateTrangThaiToFalse(gioHangChiTiet);
+        }
+        hoaDon.setTongTien(totalAmount);
+        hoaDon = hoaDonRepository.save(hoaDon); // Cập nhật tổng tiền vào hóa đơn
         return hoaDon;
     }
 
 
-
-    private void taoHoaDonChiTiet(HoaDon hoaDon, GioHang gioHangItem) {
-        // Tạo hóa đơn chi tiết cho từng mục trong giỏ hàng
-        HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
-        hoaDonChiTiet.setHoaDon(hoaDon);
-        hoaDonChiTiet.setGioHang(gioHangItem); // Đặt giỏ hàng cho hóa đơn chi tiết
-        hoaDonChiTiet.setSoLuong(gioHangItem.getSoLuong());
-
-        // Lấy giá từ chi tiết sản phẩm trong giỏ hàng
-        BigDecimal giaSanPham = gioHangItem.getChiTietSanPham().getGiaBan();
-        hoaDonChiTiet.setGia(giaSanPham);
-
-        // Tính tổng tiền cho hóa đơn chi tiết
-        BigDecimal tongTien = giaSanPham.multiply(BigDecimal.valueOf(hoaDonChiTiet.getSoLuong()));
-        hoaDonChiTiet.setTongTien(tongTien);
-
-        hoaDonChiTietRepository.save(hoaDonChiTiet);
-    }
-
-
-    private BigDecimal tinhTongTien(List<GioHang> gioHangItems) {
-        BigDecimal tongTien = BigDecimal.ZERO;
-        for (GioHang gioHangItem : gioHangItems) {
-            BigDecimal gia = gioHangItem.getChiTietSanPham().getGiaBan();
-            int soLuong = gioHangItem.getSoLuong();
-            tongTien = tongTien.add(gia.multiply(BigDecimal.valueOf(soLuong)));
-        }
-        return tongTien;
-    }
 }
+

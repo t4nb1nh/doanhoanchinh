@@ -17,22 +17,24 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Sản Phẩm</th>
-                        <th scope="col">Số Lương</th>
+                        <th scope="col">Số Lượng</th>
                         <th scope="col">Đơn Giá(VND)</th>
                         <th scope="col">Thành Tiền(VND)</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="gh,iterStat : ${listGH}">
+                    <tr th:each="ghct,iterStat : ${listGHCT}">
                         <td th:text="${iterStat.count}"></td>
-                        <td th:text="${gh.chiTietSanPham.tenSanPham}"></td>
-                        <td th:text="${gh.soLuong}"></td>
-                        <td th:text="${gh.chiTietSanPham.giaBan}"></td>
-                        <td th:text="${gh.soLuong * gh.chiTietSanPham.giaBan}"></td>
-                        <td><a th:href="@{'/admin/ban-hang/xoa-gio-hang/' + ${gh.idGioHang}}">
-                            <button class="btn btn-secondary">Xóa</button>
-                        </a></td>
+                        <td th:text="${ghct.chiTietSanPham.tenSanPham}"></td>
+                        <td th:text="${ghct.soLuong}"></td>
+                        <td th:text="${ghct.chiTietSanPham.giaBan}"></td>
+                        <td th:text="${ghct.tongGia}"></td>
+                        <td>
+                            <a th:href="@{'/admin/ban-hang/xoa-chi-tiet-gio-hang/' + ${ghct.idGioHangChiTiet}}">
+                                <button class="btn btn-secondary">Xóa</button>
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -66,7 +68,6 @@
                     <td><a>
                         <form action="/admin/ban-hang/them-san-pham" method="post">
                             <input type="hidden" name="chiTietSanPhamId" th:value="${sp.idChiTietSanPham}">
-                            <input type="hidden" name="khachHangId" value="3">
                             <button type="submit" class="btn btn-secondary">Add</button>
                         </form>
                     </a></td>
@@ -80,7 +81,7 @@
                 <div class="col-md-7">
                     <label>Nhân Viên</label>
                     <div class="mb-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" readonly>
                     </div>
                     <form action="/admin/ban-hang/search/khach-hang" method="post" class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Tìm Kiếm Khách Hàng" name="sdt"
@@ -91,12 +92,12 @@
                 <div class="col-md-5">
                     <label>Mã Hóa Đơn</label>
                     <div class="mb-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" readonly th:value="${maHD}">
                     </div>
                     <div class="input-group mb-3">
                         <select class="form-select" aria-label="Disabled select example" disabled>
-                            <option value="0" selected>Khách Lẻ</option>
-                            <option value="1">Khách Đã Đăng Ký</option>
+                            <option >Khách Lẻ</option>
+                            <option >Khách Đã Đăng Ký</option>
                         </select>
                     </div>
                 </div>
@@ -124,30 +125,18 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label>Khuyến Mại</label>
+                    <label>Ngày Tạo</label>
                     <div class="input-group ">
-                        <input type="text" class="form-control ">
-                        <span class="input-group-text">%</span>
+                        <input type="text" class="form-control " th:value="${ngayTao}" readonly>
                     </div>
-                    <br>
-                    <label>Hình Thức Mua Hàng</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="0" selected>Tại Cửa Hàng</option>
-                        <option value="1">Online</option>
-                    </select>
                 </div>
                 <div class="col-md-6">
                     <label>Tổng Tiền</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" readonly>
+                        <input type="text" class="form-control" th:value="${tongTien}" readonly>
                         <span class="input-group-text">VND</span>
                     </div>
                     <br>
-                    <label>Hình Thức Thanh Toán</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="0" selected>Tiền Mặt</option>
-                        <option value="1">Online</option>
-                    </select>
                 </div>
             </div>
             <br>
@@ -163,9 +152,6 @@
             </div>
         </div>
     </div>
-</div>
-<div th:if="${thanhToanSuccess}" class="alert alert-success">
-    <p th:text="${thanhToanSuccess}"></p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

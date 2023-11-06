@@ -22,8 +22,8 @@ public class ChiTietSanPham {
     private String tenSanPham;
 
     @ManyToOne
-    @JoinColumn(name = "idsanpham")
-    private SanPham sanPham;
+    @JoinColumn(name = "idloaisanpham")
+    private LoaiSanPham loaiSanPham;
 
     @ManyToOne
     @JoinColumn(name = "idchatlieu")

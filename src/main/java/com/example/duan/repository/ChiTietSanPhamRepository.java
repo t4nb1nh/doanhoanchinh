@@ -11,5 +11,8 @@ import java.util.List;
 public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, Integer> {
     @Query("SELECT ctsp FROM ChiTietSanPham ctsp WHERE ctsp.tenSanPham LIKE %?1%")
     List<ChiTietSanPham> findChiTietSanPhamByTenSanPhamContaining(String ten);
+
+    ChiTietSanPham findChiTietSanPhamByIdChiTietSanPham(Integer id);
+
 }
 

@@ -21,4 +21,8 @@ public class ChiTietSanPhamService {
     public List<ChiTietSanPham> searchSanPham(String ten){
         return chiTietSanPhamRepository.findChiTietSanPhamByTenSanPhamContaining(ten);
     }
+
+    public ChiTietSanPham findChiTietSanPhamById(Integer idChiTietSanPham){
+        return chiTietSanPhamRepository.findChiTietSanPhamByIdChiTietSanPham(idChiTietSanPham);
+    }
 }

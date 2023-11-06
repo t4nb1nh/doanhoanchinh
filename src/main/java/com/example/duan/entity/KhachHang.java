@@ -48,4 +48,6 @@ public class KhachHang {
     @Column(name = "trangthai")
     private Boolean trangThai;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "khachHang")
+    private GioHang gioHang;
 }
