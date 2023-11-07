@@ -7,37 +7,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
-public class MauSacService {
-    @Autowired
-    private MauSacRepository MauSacRepository;
+public interface MauSacService {
+    List<MauSac> findAll();
 
-    public List<MauSac> getAll(){
-        return MauSacRepository.findAll();
-    };
+    void saveMauSac(MauSac mauSac);
 
-    public MauSac addMauSac(MauSac MauSac) {
-        return MauSacRepository.save(MauSac);
-    }
+    MauSac findByID(Integer id);
 
-    public MauSac getById(int id) {
-        return MauSacRepository.findById(id).orElse(null);
-    }
+    MauSac update(MauSac mauSac);
 
-    public void updateMauSac(int Id, MauSac MauSac) {
-        Optional<MauSac> existingMauSac = MauSacRepository.findById(Id);
+    void delete(Integer id);
 
-        if (existingMauSac.isPresent()) {
-            MauSac updatedMauSac = existingMauSac.get();
-            updatedMauSac.setMa(MauSac.getMa());
-            updatedMauSac.setTen(MauSac.getTen());
-            updatedMauSac.setNgayTao(MauSac.getNgayTao());
-            updatedMauSac.setTrangThai(MauSac.isTrangThai());
-            MauSacRepository.save(updatedMauSac);
-        }
-    }
-
-    public void deleteMauSac(int id) {
-        MauSacRepository.deleteById(id);
-    }
+    List<MauSac> findMauSacByMa(String ma);
 }
