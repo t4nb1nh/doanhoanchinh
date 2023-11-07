@@ -1,7 +1,7 @@
 package com.example.duan.controller;
 
-import com.example.duan.entity.SanPham;
-import com.example.duan.service.SanPhamService;
+import com.example.duan.entity.LoaiSanPham;
+import com.example.duan.service.LoaiSanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,42 +14,42 @@ import java.util.List;
 @RequestMapping("/san-pham")
 public class SanPhamController {
     @Autowired
-    private SanPhamService sanPhamService;
+    private LoaiSanPhamService loaiSanPhamService;
 
     @GetMapping()
     public String getAll(Model model) {
-        List<SanPham> dsSanPham = sanPhamService.getAll();
-        model.addAttribute("dsSanPham", dsSanPham);
-        model.addAttribute("kh", new SanPham());
+        List<LoaiSanPham> dsLoaiSanPham = loaiSanPhamService.getAll();
+        model.addAttribute("dsSanPham", dsLoaiSanPham);
+        model.addAttribute("kh", new LoaiSanPham());
         return "SanPham/Index";
     }
 
     @PostMapping("/add")
-    public String addSanPham(@ModelAttribute SanPham sanPham, Model model) {
-        sanPham.setTrangThai(true);
-        sanPhamService.addSanPham(sanPham);
-        List<SanPham> dsSanPham = sanPhamService.getAll();
-        model.addAttribute("dsSanPham", dsSanPham);
+    public String addSanPham(@ModelAttribute LoaiSanPham loaiSanPham, Model model) {
+        loaiSanPham.setTrangThai(true);
+        loaiSanPhamService.addSanPham(loaiSanPham);
+        List<LoaiSanPham> dsLoaiSanPham = loaiSanPhamService.getAll();
+        model.addAttribute("dsSanPham", dsLoaiSanPham);
         return "redirect:/san-pham";
     }
 
     @GetMapping("/detail/{id}")
     public String editSanPhamForm(@PathVariable("id") int Id, Model model) {
-        SanPham sanPham = sanPhamService.getById(Id);
-        model.addAttribute("sanpham", sanPham);
+        LoaiSanPham loaiSanPham = loaiSanPhamService.getById(Id);
+        model.addAttribute("sanpham", loaiSanPham);
         return "SanPham/Detail";
     }
 
     @PostMapping("/update/{id}")
-    public String updateSanPham(@PathVariable("id") int id, @ModelAttribute SanPham sanPham) {
-        sanPhamService.updateSanPham(id,sanPham);
+    public String updateSanPham(@PathVariable("id") int id, @ModelAttribute LoaiSanPham loaiSanPham) {
+        loaiSanPhamService.updateSanPham(id, loaiSanPham);
         return "redirect:/san-pham";
     }
 
 
     @GetMapping("/delete/{id}")
     public String deleteSanPham(@PathVariable("id") int id) {
-        sanPhamService.deleteSanPham(id);
+        loaiSanPhamService.deleteSanPham(id);
         return "redirect:/san-pham";
     }
 

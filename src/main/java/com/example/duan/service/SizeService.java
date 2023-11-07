@@ -35,7 +35,7 @@ public class SizeService {
             updatedSize.setMa(Size.getMa());
             updatedSize.setTen(Size.getTen());
             updatedSize.setNgayTao(Size.getNgayTao());
-            updatedSize.setTrangThai(Size.getTrangThai());
+            updatedSize.setTrangThai(Size.isTrangThai());
             repository.save(updatedSize);
         }
     }

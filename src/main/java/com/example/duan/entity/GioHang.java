@@ -13,21 +13,21 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "phongcach")
-public class PhongCach {
+@Table(name = "giohang")
+public class GioHang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idphongcach")
-    private Integer idPhongCach;
-    @Column(name = "ma")
-    private String ma;
-    @Column(name = "ten")
-    private String ten;
-    @Column(name = "trangthai")
-    private boolean trangThai;
+    @Column(name = "idgiohang")
+    private Integer idGioHang;
+
+    @OneToOne
+    @JoinColumn(name = "idkhachhang")
+    private KhachHang khachHang;
+
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "ngaytao")
     private Date ngayTao;
+
 }
