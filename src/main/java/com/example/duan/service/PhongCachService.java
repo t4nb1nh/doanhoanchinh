@@ -34,7 +34,7 @@ public class PhongCachService {
             updatedPhongCach.setMa(PhongCach.getMa());
             updatedPhongCach.setTen(PhongCach.getTen());
             updatedPhongCach.setNgayTao(PhongCach.getNgayTao());
-            updatedPhongCach.setTrangThai(PhongCach.getTrangThai());
+            updatedPhongCach.setTrangThai(PhongCach.isTrangThai());
             repository.save(updatedPhongCach);
         }
     }

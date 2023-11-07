@@ -1,11 +1,14 @@
 package com.example.duan.service;
 
+import com.example.duan.entity.GioHang;
 import com.example.duan.entity.KhachHang;
 import com.example.duan.entity.KhachHang;
 import com.example.duan.repository.KhachHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,7 @@ public class KhachHangService {
     };
 
     public KhachHang addKhachHang(KhachHang khachHang) {
+            khachHang.setNgayTao(new Date());
         return khachHangRepository.save(khachHang);
     }
 
@@ -46,5 +50,22 @@ public class KhachHangService {
 
     public void deleteKhachHang(int id) {
         khachHangRepository.deleteById(id);
+    }
+
+    public KhachHang searchKhachHang(String sdt) {
+        return khachHangRepository.findKhachHangBySoDienThoai(sdt);
+    }
+
+    public KhachHang createKhachHangWithGioHang(KhachHang khachHang) {
+        // Tạo một đối tượng Giỏ Hàng mới
+        GioHang gioHang = new GioHang();
+        gioHang.setKhachHang(khachHang);
+        gioHang.setNgayTao(new Date());
+        // Thiết lập quan hệ giữa Khách Hàng và Giỏ Hàng
+        khachHang.setGioHang(gioHang);
+        // Lưu cả Khách Hàng và Giỏ Hàng vào cơ sở dữ liệu
+        khachHang = khachHangRepository.save(khachHang);
+
+        return khachHang;
     }
 }
