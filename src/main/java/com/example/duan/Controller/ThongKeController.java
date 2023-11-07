@@ -71,7 +71,7 @@ public class ThongKeController {
         model.addAttribute("sumDHCancel", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(4)));
         model.addAttribute("sumDHReturn", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(6)));
 
-        return "ThongKe/ThongKehoadon";
+        return "ThongKe/ThongKe";
     }
 
     @GetMapping({"/hoa-don/{status}/{pageNum}"})
@@ -108,6 +108,6 @@ public class ThongKeController {
         model.addAttribute("sumDHCancel", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(4)));
         model.addAttribute("sumDHReturn", this.hoaDonService.soDonHangTheoTrangThai(Integer.valueOf(6)));
         model.addAttribute("selectedStatus", Integer.valueOf(status));
-        return "ThongKe/ThongKehoadon";
+        return "ThongKe/ThongKe";
     }
 }

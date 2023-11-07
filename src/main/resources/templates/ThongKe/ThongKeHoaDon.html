@@ -7,6 +7,7 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
+<div th:fragment="reportStatus"></div>
 <div class="row justify-content-center">
     <div class="col-sm-2">
         <div class="card">
@@ -127,7 +128,7 @@
                 <td>[[${dh.ngayTao}]]</td>
                 <td>
 <!--                    <a class="btn btn-outline-danger"-->
-<!--                       th:href="@{/admin/hoa-don-chi-tiet/search/{id}(id=${dh.idDonHang})}">-->
+<!--                       th:href="@{/admin/hoa-don-chi-tiet/search/{id}(id=${dh.idHoaDon})}">-->
 <!--                                                                Xem-->
 <!--                    </a>-->
                 </td>
