@@ -1,66 +1,63 @@
-package com.example.duan.entity;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+    package com.example.duan.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Random;
+    import com.fasterxml.jackson.annotation.JsonFormat;
+    import jakarta.persistence.*;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "hoadon")
-public class HoaDon {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idhoadon")
-    private Integer idHoaDon;
+    import java.math.BigDecimal;
+    import java.util.Date;
+    import java.util.Random;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(name = "ngaytao")
-    private Date ngayTao;
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Entity
+    @Table(name = "hoadon")
+    public class HoaDon {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "idhoadon")
+        private Integer idHoaDon;
 
-    @Column(name = "mahoadon")
-    private String maHoaDon;
+        @Temporal(TemporalType.DATE)
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+        @Column(name = "ngaytao")
+        private Date ngayTao;
 
-    @Column(name = "phuongthucmuahang")
-    private boolean phuongThucMuaHang;
+        @Temporal(TemporalType.DATE)
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+        @Column(name = "ngaygiaohang")
+        private Date ngayGiaoHang;
 
-    @Column(name = "tienshiphang")
-    private Double tienShipHang;
+        @Temporal(TemporalType.DATE)
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+        @Column(name = "ngaynhan")
+        private Date ngayNhan;
 
-    @Column(name = "trangthai")
-    private Integer trangThai;
+        @Column(name = "mahoadon")
+        private String maHoaDon;
 
-    @Column(name = "httt")
-    private boolean hTTT;
+        @Column(name = "phuongthucmuahang")
+        private boolean phuongThucMuaHang;
 
-    @Column(name = "tongtien")
-    private BigDecimal tongTien;
+        @Column(name = "tienshiphang")
+        private Double tienShipHang;
 
-    @ManyToOne
-    @JoinColumn(name = "idkhachhang")
-    private KhachHang khachHang;
+        @Column(name = "trangthai")
+        private Integer trangThai;
 
-    @ManyToOne
-    @JoinColumn(name = "idnhanvien")
-    private NhanVien nhanVien;
+        @Column(name = "httt")
+        private boolean hTTT;
 
-    private String generateRandomMaHoaDon() {
-        String prefix = "HD";
-        // Tạo số ngẫu nhiên có 7 chữ số
-        String randomNumber = String.format("%07d", new Random().nextInt(10000000));
-        return prefix + randomNumber;
+        @Column(name = "tongtien")
+        private BigDecimal tongTien;
+
+        @Column(name = "diachidonhang")
+        private String diaChiDonHang;
+
+        @ManyToOne
+        @JoinColumn(name = "idnhanvien")
+        private NhanVien nhanVien;
     }
-
-    @PrePersist
-    public void generateMaHoaDon() {
-        this.maHoaDon = generateRandomMaHoaDon();
-    }
-
-}

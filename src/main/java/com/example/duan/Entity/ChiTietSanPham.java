@@ -1,7 +1,9 @@
 package com.example.duan.entity;
-import jakarta.persistence.*;
 
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -20,8 +22,8 @@ public class ChiTietSanPham {
     private String tenSanPham;
 
     @ManyToOne
-    @JoinColumn(name = "idsanpham")
-    private SanPham sanPham;
+    @JoinColumn(name = "idloaisanpham")
+    private LoaiSanPham loaiSanPham;
 
     @ManyToOne
     @JoinColumn(name = "idchatlieu")
