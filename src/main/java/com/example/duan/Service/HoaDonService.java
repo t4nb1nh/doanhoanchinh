@@ -1,53 +1,76 @@
 package com.example.duan.service;
 
-import com.example.duan.entity.HoaDon;
+import com.example.duan.entity.*;
+import com.example.duan.repository.GioHangRepository;
+import com.example.duan.repository.HoaDonChiTietRepository;
 import com.example.duan.repository.HoaDonRepository;
+import com.example.duan.repository.KhachHangRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HoaDonService {
     @Autowired
-    HoaDonRepository hoaDonRepository;
+    private HoaDonRepository hoaDonRepository;
 
-    public Integer soDonHangTheoTrangThai(Integer trangThaiDonhang) {
-        return this.hoaDonRepository.soDonHangTheoTrangThai(trangThaiDonhang);
+    @Autowired
+    private HoaDonChiTietService hoaDonChiTietService;
+
+    @Autowired
+    private GioHangChiTietService gioHangChiTietService;
+
+    public List<HoaDon> getAll() {
+        return hoaDonRepository.findAll();
     }
 
-    public Integer tongSoDonHang() {
-        return this.hoaDonRepository.tongSoDonHang();
+    ;
+
+    public List<HoaDon> getHoaDonByTrangThai(int trangThai) {
+        return hoaDonRepository.findHoaDonByTrangThai(trangThai);
     }
 
-    public Page<HoaDon> listByPage(int pageNumber, String sortField, String sortDir, String keyword) {
-        PageRequest pageRequest = PageRequest.of(pageNumber - 1, 10, Sort.by(SortOrder(sortField, sortDir)));
-        if (keyword != null)
-
-            return this.hoaDonRepository.findAllPagination(keyword, (Pageable)pageRequest);
-
-        return this.hoaDonRepository.findAll((Pageable)pageRequest);
-    }
-    public  Page<HoaDon> listByPageStatus(int pageNumber, String sortField, String sortDir, String keyword, int status) {
-        PageRequest pageRequest = PageRequest.of(pageNumber - 1, 10, Sort.by(SortOrder(sortField, sortDir)));
-        if (keyword != null)
-            return this.hoaDonRepository.findAllPaginationStatus(keyword, (Pageable)pageRequest, Integer.valueOf(status));
-        return this.hoaDonRepository.findAll((Pageable)pageRequest);
-    }
-    public List<Sort.Order> SortOrder(String sort, String sortDirection) {
-        Sort.Direction direction;
-        List<Sort.Order> sorts = new ArrayList<>();
-        if (sortDirection != null) {
-            direction = Sort.Direction.fromString(sortDirection);
+    @Transactional
+    public boolean updateTrangThaiHoaDon(int hoaDonId, int newTrangThai) {
+        Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(hoaDonId);
+        if (optionalHoaDon.isPresent()) {
+            HoaDon hoaDon = optionalHoaDon.get();
+            hoaDon.setTrangThai(newTrangThai);
+            hoaDonRepository.save(hoaDon);
+            return true; // Cập nhật thành công
         } else {
-            direction = Sort.Direction.DESC;
+            return false; // Hóa đơn không tồn tại
         }
-        sorts.add(new Sort.Order(direction, sort));
-        return sorts;
     }
+
+    @Transactional
+    public HoaDon xuLyThanhToan(String maHD, NhanVien nv, List<GioHangChiTiet> gioHangChiTietList) {
+        HoaDon hoaDon = new HoaDon();
+        hoaDon.setNgayTao(new Date());
+        hoaDon.setTrangThai(3);
+        hoaDon.setMaHoaDon(maHD);
+        hoaDon.setNhanVien(nv);
+        hoaDon = hoaDonRepository.save(hoaDon); // Lưu hóa đơn vào cơ sở dữ liệu
+        BigDecimal totalAmount = BigDecimal.ZERO;
+        for (GioHangChiTiet gioHangChiTiet : gioHangChiTietList) {
+            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
+            hoaDonChiTiet.setHoaDon(hoaDon);
+            hoaDonChiTiet.setGioHangChiTiet(gioHangChiTiet);
+            hoaDonChiTiet.setGhiChu("");
+            hoaDonChiTietService.createHoaDonChiTiet(hoaDonChiTiet);
+            totalAmount = totalAmount.add(gioHangChiTiet.getTongGia());
+            gioHangChiTietService.updateTrangThaiToFalse(gioHangChiTiet);
+        }
+        hoaDon.setTongTien(totalAmount);
+        hoaDon = hoaDonRepository.save(hoaDon); // Cập nhật tổng tiền vào hóa đơn
+        return hoaDon;
+    }
+
+
 }
+
